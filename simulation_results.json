@@ -1,0 +1,101 @@
+{
+  "basic": {
+    "simulation_id": "f4e268f7-332d-4d7f-9bde-ed90de70f5f0",
+    "total_weeks": 51,
+    "total_cost": 27048.0,
+    "total_holding_cost": 17444.0,
+    "total_backlog_cost": 9604.0,
+    "average_cost_per_week": 530.3529411764706,
+    "fill_rate": 0.5336538461538461,
+    "stockout_weeks": 49,
+    "bullwhip_ratio": 0.0,
+    "service_levels": {
+      "Retailer": {
+        "fill_rate": -0.8653846153846154,
+        "stockout_weeks": 49,
+        "stockout_percentage": 0.9423076923076923
+      },
+      "Wholesaler": {
+        "fill_rate": 1.0,
+        "stockout_weeks": 0,
+        "stockout_percentage": 0.0
+      },
+      "Distributor": {
+        "fill_rate": 1.0,
+        "stockout_weeks": 0,
+        "stockout_percentage": 0.0
+      },
+      "Factory": {
+        "fill_rate": 1.0,
+        "stockout_weeks": 0,
+        "stockout_percentage": 0.0
+      }
+    }
+  },
+  "step_demand": {
+    "simulation_id": "84c5281f-675d-473f-b6a4-dd7841ce4ac3",
+    "total_weeks": 51,
+    "total_cost": 155868.0,
+    "total_holding_cost": 15460.0,
+    "total_backlog_cost": 140408.0,
+    "average_cost_per_week": 3056.235294117647,
+    "fill_rate": -1.9873737373737375,
+    "stockout_weeks": 93,
+    "bullwhip_ratio": 0.0,
+    "service_levels": {
+      "Retailer": {
+        "fill_rate": -10.94949494949495,
+        "stockout_weeks": 49,
+        "stockout_percentage": 0.9423076923076923
+      },
+      "Wholesaler": {
+        "fill_rate": 1.0,
+        "stockout_weeks": 44,
+        "stockout_percentage": 0.8461538461538461
+      },
+      "Distributor": {
+        "fill_rate": 1.0,
+        "stockout_weeks": 0,
+        "stockout_percentage": 0.0
+      },
+      "Factory": {
+        "fill_rate": 1.0,
+        "stockout_weeks": 0,
+        "stockout_percentage": 0.0
+      }
+    }
+  },
+  "random_demand": {
+    "simulation_id": "a7babc50-aae3-437c-917b-807b863141f4",
+    "total_weeks": 51,
+    "total_cost": 28614.0,
+    "total_holding_cost": 21650.0,
+    "total_backlog_cost": 6964.0,
+    "average_cost_per_week": 561.0588235294117,
+    "fill_rate": 0.6090425531914894,
+    "stockout_weeks": 49,
+    "bullwhip_ratio": 0.0,
+    "service_levels": {
+      "Retailer": {
+        "fill_rate": -0.5638297872340425,
+        "stockout_weeks": 49,
+        "stockout_percentage": 0.9423076923076923
+      },
+      "Wholesaler": {
+        "fill_rate": 1.0,
+        "stockout_weeks": 0,
+        "stockout_percentage": 0.0
+      },
+      "Distributor": {
+        "fill_rate": 1.0,
+        "stockout_weeks": 0,
+        "stockout_percentage": 0.0
+      },
+      "Factory": {
+        "fill_rate": 1.0,
+        "stockout_weeks": 0,
+        "stockout_percentage": 0.0
+      }
+    }
+  }
+}

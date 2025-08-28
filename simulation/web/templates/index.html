@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beer Distribution Game</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-beer"></i> Beer Distribution Game</h1>
+            <div class="game-info">
+                <span class="game-id">Game: <span id="gameId">-</span></span>
+                <span class="week-counter">Week: <span id="currentWeek">0</span>/<span id="totalWeeks">52</span></span>
+                <span class="status">Status: <span id="gameStatus">Setup</span></span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel - Supply Chain Visualization -->
+            <div class="left-panel">
+                <h2>Supply Chain Network</h2>
+                <div id="supplyChainNetwork">
+                    <div class="supply-chain">
+                        <!-- Factory -->
+                        <div class="node factory" id="factory-node">
+                            <div class="node-header">
+                                <i class="fas fa-industry"></i>
+                                <h3>Factory</h3>
+                            </div>
+                            <div class="node-metrics">
+                                <div class="metric">
+                                    <label>Inventory:</label>
+                                    <span class="inventory">12</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Backlog:</label>
+                                    <span class="backlog">0</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Last Order:</label>
+                                    <span class="last-order">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="arrow">→</div>
+
+                        <!-- Distributor -->
+                        <div class="node distributor" id="distributor-node">
+                            <div class="node-header">
+                                <i class="fas fa-warehouse"></i>
+                                <h3>Distributor</h3>
+                            </div>
+                            <div class="node-metrics">
+                                <div class="metric">
+                                    <label>Inventory:</label>
+                                    <span class="inventory">12</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Backlog:</label>
+                                    <span class="backlog">0</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Last Order:</label>
+                                    <span class="last-order">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="arrow">→</div>
+
+                        <!-- Wholesaler -->
+                        <div class="node wholesaler" id="wholesaler-node">
+                            <div class="node-header">
+                                <i class="fas fa-boxes"></i>
+                                <h3>Wholesaler</h3>
+                            </div>
+                            <div class="node-metrics">
+                                <div class="metric">
+                                    <label>Inventory:</label>
+                                    <span class="inventory">12</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Backlog:</label>
+                                    <span class="backlog">0</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Last Order:</label>
+                                    <span class="last-order">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="arrow">→</div>
+
+                        <!-- Retailer -->
+                        <div class="node retailer" id="retailer-node">
+                            <div class="node-header">
+                                <i class="fas fa-store"></i>
+                                <h3>Retailer</h3>
+                            </div>
+                            <div class="node-metrics">
+                                <div class="metric">
+                                    <label>Inventory:</label>
+                                    <span class="inventory">12</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Backlog:</label>
+                                    <span class="backlog">0</span>
+                                </div>
+                                <div class="metric">
+                                    <label>Last Order:</label>
+                                    <span class="last-order">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="arrow">→</div>
+
+                        <!-- Customer -->
+                        <div class="node customer">
+                            <div class="node-header">
+                                <i class="fas fa-users"></i>
+                                <h3>Customers</h3>
+                            </div>
+                            <div class="node-metrics">
+                                <div class="metric">
+                                    <label>Demand:</label>
+                                    <span class="demand">4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Metrics -->
+                <div class="performance-metrics">
+                    <h3>Performance Metrics</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <label>Total Cost</label>
+                            <span id="totalCost">$0.00</span>
+                        </div>
+                        <div class="metric-card">
+                            <label>Service Level</label>
+                            <span id="serviceLevel">100%</span>
+                        </div>
+                        <div class="metric-card">
+                            <label>Bullwhip Ratio</label>
+                            <span id="bullwhipRatio">1.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Controls and Charts -->
+            <div class="right-panel">
+                <!-- Control Panel -->
+                <div class="control-panel" id="controlPanel">
+                    <h2>Game Controls</h2>
+                    
+                    <!-- Setup Controls -->
+                    <div id="setupControls" class="control-section">
+                        <h3>Setup Game</h3>
+                        <div class="form-group">
+                            <label for="scenarioSelect">Scenario:</label>
+                            <select id="scenarioSelect">
+                                <option value="classic">Classic</option>
+                                <option value="step_change">Demand Surge</option>
+                                <option value="seasonal">Seasonal</option>
+                                <option value="tutorial">Tutorial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="playerName">Player Name:</label>
+                            <input type="text" id="playerName" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="roleSelect">Role:</label>
+                            <select id="roleSelect">
+                                <option value="retailer">Retailer</option>
+                                <option value="wholesaler">Wholesaler</option>
+                                <option value="distributor">Distributor</option>
+                                <option value="factory">Factory</option>
+                            </select>
+                        </div>
+                        <button id="createGameBtn" class="btn btn-primary">Create Game</button>
+                    </div>
+
+                    <!-- Play Controls -->
+                    <div id="playControls" class="control-section" style="display: none;">
+                        <h3>Order Decision</h3>
+                        <div class="form-group">
+                            <label for="orderQuantity">Order Quantity:</label>
+                            <input type="number" id="orderQuantity" min="0" value="4">
+                        </div>
+                        <button id="submitOrderBtn" class="btn btn-success">Submit Order</button>
+                        
+                        <div class="game-buttons">
+                            <button id="pauseBtn" class="btn btn-warning">Pause</button>
+                            <button id="resumeBtn" class="btn btn-info" style="display: none;">Resume</button>
+                            <button id="endBtn" class="btn btn-danger">End Game</button>
+                        </div>
+                    </div>
+
+                    <!-- Messages -->
+                    <div id="messages" class="messages-section">
+                        <h3>Messages</h3>
+                        <div id="messageList" class="message-list"></div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-panel">
+                    <h2>Analytics</h2>
+                    <div class="chart-tabs">
+                        <button class="tab-btn active" data-chart="inventory">Inventory</button>
+                        <button class="tab-btn" data-chart="costs">Costs</button>
+                        <button class="tab-btn" data-chart="orders">Orders</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chartCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Results -->
+        <div id="resultsModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Game Results</h2>
+                <div id="resultsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/game.js"></script>
+</body>
+</html>

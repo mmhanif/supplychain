@@ -1,0 +1,15 @@
+[project]
+name = "simulation"
+version = "0.1.0"
+description = "Beer Distribution Game Simulation with Web Interface"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.2.6",
+    "pandas>=2.3.2",
+    "simpy>=4.1.1",
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.23.0",
+    "websockets>=11.0",
+    "pydantic>=2.0.0",
+]
